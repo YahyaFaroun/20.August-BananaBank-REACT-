@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+class BananaBankBuchungen extends Component {
+  state = {
+    userInput: 0,
+    balance: 0,
+    }
 
-export default App;
+    handleChange = (event) =>{
+      this.setState({userInput : event.target.value})
+      console.log(this.state.userInput)
+    }     
+    
+    addition = (event) =>{
+      this.setState({balance : Number(this.state.balance) + Number(this.state.userInput) })
+      console.log(this.state.balance)
+    }
+    subtraction = (event) =>{
+      this.setState({balance : Number(this.state.balance) - Number(this.state.userInput) })
+      console.log(this.state.balance)
+    }
+
+  render() { 
+    return (
+      <section>
+     <div id="logoImg"><img src="" alt=""/></div>
+      <div>
+        <h2>Banana Bank</h2>
+      </div>
+      <div>
+        <article className="konto">
+          <h3>Dein Girokonto</h3>
+          <div>
+          <h1 className="saldo">{this.state.balance}</h1>
+          </div>
+          <input className="geldbetrag" type="number" /*value={this.state.userInput}*/ onChange={this.handleChange} name="" id="" placeholder="Gebe den Betrag ein"/>
+        </article>
+        <div>
+          <input className="auszahlen" type="button" onClick={this.addition} value="Einzahlen"/>
+          <input className="einzahlen" type="button" onClick={this.subtraction} value="Auszahlen"/>
+        </div>
+      </div>
+   </section>
+      );
+  }
+}
+ 
+export default BananaBankBuchungen;
